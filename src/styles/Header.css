@@ -1,0 +1,129 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.header.scrolled {
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.98);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo{
+  color: #667eea;
+  font-weight: 500;
+  font-size: 26px;
+  display: flex;
+  flex-direction: row;
+}
+.logo h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3498db;
+  margin: 0;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu ul li {
+  margin-left: 30px;
+}
+
+.nav-menu ul li button {
+  text-decoration: none;
+  color: #667eea;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+}
+
+.nav-menu ul li button:hover {
+  color: #3498db;
+}
+
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.menu-icon span {
+  width: 25px;
+  height: 2px;
+  background: #333;
+  transition: all 0.3s linear;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: #fff;
+    padding-top: 80px;
+    transition: 0.3s;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  }
+
+  .nav-menu.open {
+    right: 0;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-menu ul li {
+    margin: 15px 0;
+  }
+
+  .menu-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}

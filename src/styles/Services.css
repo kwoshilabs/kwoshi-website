@@ -1,0 +1,59 @@
+
+.services {
+    padding: 60px 0;
+    background-color: #f4f4f4;
+    background-image: url('/public/background.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat;
+  }
+  .services h2 {
+    text-align: center;
+    color: #667eea;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+  }
+  
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  
+  .service-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .service-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  
+  .service-card h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+  }
+  
+  .service-card p {
+    color: #666;
+    font-size: 1em;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+  }

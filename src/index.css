@@ -1,0 +1,25 @@
+/* Set default font family for the entire body */
+body {
+  font-family: 'Lato', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Set font for all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+/* Set font for all paragraphs */
+p {
+  font-family: 'Lato', 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+/* Set font for all buttons and inputs */
+button, input, select, textarea {
+  font-family: 'Lato', 'Roboto', sans-serif;
+}
+
+/* You can add more specific overrides here if needed */
