@@ -1,105 +1,131 @@
 import React, { useState } from 'react';
- import '../styles/Team.css';
+import { motion } from 'framer-motion'; // Import motion
+// Assuming Team.css is correctly located relative to this file
+import '../styles/Team.css'; // No changes needed here
 
 const TeamComponent = () => {
   const [selectedMember, setSelectedMember] = useState(null);
   const [selectedRole, setSelectedRole] = useState(null);
 
+  // --- Team Data and Roles (remain the same) ---
   const teamMembers = [
-    {
-      id: 1,
-      name: "Vaskar Dhakal",
-      role: "CEO & Founder",
-      description: "With over 7 years of experience in tech, Vaskar leads our team with vision and expertise.",
-      roles: ["Co-founder","Back-end engineers" ],
-      image: "/vaskar.JPG"
-    },
-    {
-      id: 2,
-      name: "Nitesh Tripathi",
-      role: "CTO",
-      description: "Nitesh's innovative approach to technology drives our cutting-edge solutions.",
-      roles: ["Co-founder", "Back-end engineers", "Infrastructure"],
-      image: "/Nitesh.JPG"
-    },
-    {
-      id: 3,
-      name: "Bibek Bhandari",
-      role: "Lead Designer",
-      description: "Bibek's creative designs bring our clients' visions to life with stunning visuals.",
-      roles: ["Co-founder", "Designer", "Back-end engineers"],
-      image: "/bibek.jpg"
-    },
-    {
-      id: 4,
-      name: "Ramesh Chapagain",
-      role: "Senior Developer",
-      description: "Ramesh's coding wizardry turns complex problems into elegant solutions.",
-      roles: ["Co-founder", "Front-end engineers", "Integration"],
-      image: "/Ramey.jpeg"
-    },
-    {
-      id: 5,
-      name: "Simanta Poudel",
-      role: "Senior Developer",
-      description: "Simanta's coding expertise helps build robust systems.",
-      roles: ["Co-founder", "Front-end engineers", "Back-end engineers"],
-      image: "/asaar.jpg"
-    },
-    {
-      id: 6,
-      name: "Kadarsha Kandel",
-      role: "Senior Developer",
-      description: "Aadarsha specializes in creating seamless user experiences.",
-      roles: ["Co-founder", "Front-end engineers", "Integration"],
-      image: "/aadarsh.jpg"
-    }
+    { id: 1, name: "Vaskar Dhakal", role: "CEO & Founder", description: "With over 7 years of experience in tech, Vaskar leads our team with vision and expertise.", roles: ["Co-founder", "Back-end engineers"], image: "/vaskar.JPG" },
+    { id: 2, name: "Nitesh Tripathi", role: "CTO", description: "Nitesh's innovative approach to technology drives our cutting-edge solutions.", roles: ["Co-founder", "Back-end engineers", "Infrastructure"], image: "/Nitesh.JPG" },
+    { id: 3, name: "Bibek Bhandari", role: "Lead Designer", description: "Bibek's creative designs bring our clients' visions to life with stunning visuals.", roles: ["Co-founder", "Designer", "Back-end engineers"], image: "/bibek.jpg" },
+    { id: 4, name: "Ramesh Chapagain", role: "Senior Developer", description: "Ramesh's coding wizardry turns complex problems into elegant solutions.", roles: ["Co-founder", "Front-end engineers", "Integration"], image: "/Ramey.jpeg" },
+    { id: 5, name: "Simanta Poudel", role: "Senior Developer", description: "Simanta's coding expertise helps build robust systems.", roles: ["Co-founder", "Front-end engineers", "Back-end engineers"], image: "/asaar.jpg" },
+    { id: 6, name: "Kadarsha Kandel", role: "Senior Developer", description: "Aadarsha specializes in creating seamless user experiences.", roles: ["Co-founder", "Front-end engineers", "Integration"], image: "/aadarsh.jpg" }
   ];
-
   const roles = ["Co-founder", "Back-end engineers", "Front-end engineers", "Infrastructure", "Designer", "Integration"];
 
+  // --- Handlers (remain the same) ---
   const handleMemberClick = (member) => {
     setSelectedMember(selectedMember?.id === member.id ? null : member);
   };
-
   const handleRoleClick = (role) => {
     setSelectedRole(selectedRole === role ? null : role);
     setSelectedMember(null);
   };
 
-  const filteredMembers = selectedRole 
+  // --- Filtering Logic (remains the same) ---
+  const filteredMembers = selectedRole
     ? teamMembers.filter(member => member.roles.includes(selectedRole))
     : teamMembers;
 
+  // --- Animation Variants ---
+  const viewportSettings = {
+    once: false, // Trigger animation every time
+    amount: 0.2  // Trigger when 20% of the element is in view (adjust if needed)
+  };
+
+  const sectionFadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.6 } }
+  };
+
+  const itemFadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 1 }, // Container itself doesn't fade, just orchestrates children
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1 // Delay between each child animation
+      }
+    }
+  };
+
+
   return (
-    <div className="team-container" id='team'>
-      <h2>Our Team</h2>
-      
-      <div className="role-filters">
+    // Wrap the main container for a subtle overall fade-in (optional)
+    <motion.div
+      className="team-container"
+      id='team'
+      initial="hidden"
+      whileInView="visible"
+      variants={sectionFadeIn} // Use a simple fade for the whole section container
+      viewport={viewportSettings}
+    >
+      {/* Animate the title */}
+      <motion.h2
+        initial="hidden"
+        whileInView="visible"
+        variants={itemFadeInUp}
+        viewport={viewportSettings}
+      >
+        Our Team
+      </motion.h2>
+
+      {/* Animate the role filters container with staggering children */}
+      <motion.div
+        className="role-filters"
+        initial="hidden"
+        whileInView="visible"
+        variants={staggerContainer}
+        viewport={viewportSettings}
+      >
         {roles.map(role => (
-          <button
+          // Animate each filter button
+          <motion.button
             key={role}
             className={`role-filter ${selectedRole === role ? 'active' : ''}`}
             onClick={() => handleRoleClick(role)}
+            variants={itemFadeInUp} // Each button fades/slides up
           >
             {role}
-          </button>
+          </motion.button>
         ))}
-      </div>
-      
-      <div className="team-members">
+      </motion.div>
+
+      {/* Animate the team members container with staggering children */}
+      {/* Note: We use AnimatePresence from framer-motion if filtered items need exit animations */}
+      {/* For simplicity here, we'll just animate the container and items on appear */}
+      <motion.div
+        className="team-members"
+        initial="hidden"
+        whileInView="visible"
+        variants={staggerContainer}
+        viewport={viewportSettings}
+      >
         {filteredMembers.map(member => (
-          <div 
-            key={member.id}
+          // Animate each member circle
+          <motion.div
+            key={member.id} // Use member.id for stable key
             className={`member-circle ${selectedMember?.id === member.id ? 'selected' : ''}`}
             onClick={() => handleMemberClick(member)}
+            variants={itemFadeInUp} // Each circle fades/slides up
+            // layout // Add layout prop if size changes should be animated smoothly
           >
             <div className="circle-content">
-            <img 
-                src={member.image} 
+              <img
+                src={member.image}
                 alt={member.name}
                 className="member-photo"
               />
+              {/* Conditionally rendered info doesn't need separate motion wrapper unless desired */}
               {selectedMember?.id === member.id && (
                 <div className="member-info">
                   <h3>{member.name}</h3>
@@ -108,77 +134,11 @@ const TeamComponent = () => {
                 </div>
               )}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
 export default TeamComponent;
-
-
-
-// import React from 'react';
-// import '../styles/Team.css';
-
-// const Team = () => {
-//   const teamMembers = [
-//     {
-//       name: "Vaskar Dhakal",
-//       role: "CEO & Founder",
-//       description: "With over 7 years of experience in tech, Vaskar leads our team with vision and expertise.",
-//       image: "/vaskar.JPG"
-//     },
-//     {
-//       name: "Nitesh Tripathi",
-//       role: "CTO",
-//       description: "Nitesh's innovative approach to technology drives our cutting-edge solutions.",
-//       image: "/Nitesh.JPG"
-//     },
-//     {
-//       name: "Bibek Bhandari",
-//       role: "Lead Designer",
-//       description: "Bibek's creative designs bring our clients' visions to life with stunning visuals.",
-//       image: "/bibek.jpg"
-//     },
-//     {
-//       name: "Ramesh Chapagain",
-//       role: "Senior Developer",
-//       description: "Ramesh's coding wizardry turns complex problems into elegant solutions.",
-//       image: "/Ramey.jpeg"
-//     },
-//     {
-//       name: "Simanta Poudel",
-//       role: "Senior Developer",
-//       description: "Simanta's coding wizardry turns complex problems into elegant solutions.",
-//       image: "/asaar.jpg"
-//     },
-//     {
-//       name: "Aadarsha Kandel",
-//       role: "Senior Developer",
-//       description: "Aadarsh's coding wizardry turns complex problems into elegant solutions.",
-//       image: "/aadarsh.jpg"
-//     }
-//   ];
-
-//   return (
-//     <section id="team" className="team">
-//       <div className="container">
-//         <h2>Our Team</h2>
-//         <div className="team-grid">
-//           {teamMembers.map((member, index) => (
-//             <div key={index} className="team-member">
-//               <img src={member.image} alt={member.name} className="member-image" />
-//               <h3>{member.name}</h3>
-//               <h4>{member.role}</h4>
-//               <p>{member.description}</p>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Team;
