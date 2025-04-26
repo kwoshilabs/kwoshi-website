@@ -4,15 +4,15 @@
   left: 0;
   width: 100%;
   padding: 20px 0;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: transparent;
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
   transition: all 0.3s ease;
   z-index: 1000;
 }
 
 .header.scrolled {
-  padding: 10px 0;
-  background-color: rgba(255, 255, 255, 0.98);
+  padding: 5px 0;
+  background-color: #a3b7f1;
 }
 
 .header-content {
@@ -47,17 +47,17 @@
 
 .nav-menu ul li button {
   text-decoration: none;
-  color: #667eea;
-  font-weight: 500;
-  font-size: 16px;
+  color: white;
+  font-weight: 1000;
+  font-size: 20px;
   transition: color 0.3s ease;
   cursor: pointer;
   border: none;
-  background-color: white;
+  background-color: transparent;
 }
 
 .nav-menu ul li button:hover {
-  color: #3498db;
+  color: #b0bae7;
 }
 
 .menu-icon {

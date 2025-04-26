@@ -1,7 +1,17 @@
 import React from 'react';
 import '../styles/Services.css';
 
+
 const Services = () => {
+  
+  const scrollToAbout = () => {
+    const section = document.getElementById("about");
+    if (section) {
+      section.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  };
   const serviceList = [
     {
       title: "Website Development",
@@ -26,18 +36,22 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="services">
-      <div className="container">
-        <h2>Our Work</h2>
-        <div className="service-grid">
-          {serviceList.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </div>
-          ))}
+
+    <section className="hero" id="home" >
+      <div className="hero-container">
+        <div className="hero-content">
+          <h1 className="hero-title">
+            Build it Beautiful. <br />
+            <span className="hero-subtitle">& Unparalleled.</span>
+          </h1>
+          <p className="hero-description">
+            Kwoshi is the all-in-one modern Development and AI company.
+          </p>
+          <button className="hero-button" onClick={scrollToAbout}>
+          Learn More <span className="arrow">→</span>
+        </button>
         </div>
+
       </div>
     </section>
   );

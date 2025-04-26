@@ -13,8 +13,9 @@ function App() {
     <div className="App">
       <Header />
       <Services />
-      <About />
       <WorkCarousel />
+      <About />
+
       <Team />
       <Chatbot />
       <Contact />

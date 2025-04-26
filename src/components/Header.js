@@ -49,8 +49,7 @@ const Header = () => {
         </div>
         <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
           <ul>
-            <li><button onClick={() => scrollToSection('services')}>Home</button></li>
-            <li><button onClick={() => scrollToSection('services')}>Services</button></li>
+            <li><button onClick={() => scrollToSection('home')}>Home</button></li>
             <li><button onClick={() => scrollToSection('about')}>About</button></li>
             <li><button onClick={() => scrollToSection('work-carousel')}>Our Works</button></li>
             <li><button onClick={() => scrollToSection('team')}>Team</button></li>
@@ -63,3 +62,5 @@ const Header = () => {
 };
 
 export default Header;
+
+

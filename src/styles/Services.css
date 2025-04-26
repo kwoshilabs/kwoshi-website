@@ -1,13 +1,108 @@
-
+/* 
 .services {
     padding: 60px 0;
     background-color: #f4f4f4;
-    background-image: url('/public/background.jpg'); /* Replace with your image path */
-    background-size: cover; /* Ensures the image covers the entire section */
-    background-position: center; /* Centers the background image */
+    background-image: url('/public/phone-play.jpg');
+    background-size: cover; 
+    background-position: center; 
     background-repeat: no-repeat;
+  } */
+
+  
+  .hero {
+    padding: 100px 0;
+    background: 
+      linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.3) 0%,  /* Very subtle white at top */
+        rgba(255, 255, 255, 0.1) 30%,  /* Fading quickly */
+        transparent 60%                 /* Fully transparent by 60% down */
+      ),
+      url('/public/phone.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
   }
-  .services h2 {
+  
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .hero-content {
+    flex: 1;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #ab96dd; /* Dark color, adjust as needed */
+  }
+  
+  .hero-subtitle {
+    color: #b5adc7; /* Purple color, adjust as needed */
+    display: inline-block;
+  }
+  
+  .hero-description {
+    font-size: 1.25rem;
+    color: white;
+    max-width: 500px;
+    line-height: 1.6;
+  }
+  
+  .hero-button {
+    background-color: #6b46c1; /* Purple color, adjust as needed */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .hero-button:hover {
+    background-color: #553c9a; /* Darker purple on hover */
+    transform: translateY(-2px);
+  }
+  
+  .arrow {
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .hero-container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .hero-title {
+      font-size: 2.5rem;
+    }
+  
+    .hero-description {
+      margin: 0 auto 30px;
+    }
+  }
+
+
+
+
+  /* .services h2 {
     text-align: center;
     color: #667eea;
     margin-top: 100px;
@@ -56,4 +151,4 @@
     .service-grid {
       grid-template-columns: 1fr;
     }
-  }
+  } */
