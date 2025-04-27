@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion'; // Import motion
+import { motion, AnimatePresence } from 'framer-motion'; // Add AnimatePresence
 // Assuming Team.css is correctly located relative to this file
 import '../styles/Team.css'; // No changes needed here
 
@@ -103,23 +103,23 @@ const TeamComponent = () => {
       {/* Animate the team members container with staggering children */}
       {/* Note: We use AnimatePresence from framer-motion if filtered items need exit animations */}
       {/* For simplicity here, we'll just animate the container and items on appear */}
+      <AnimatePresence mode='wait'>
+  <motion.div
+    key={selectedRole || 'all'} // This forces re-animation when filter changes
+    className="team-members"
+    initial="hidden"
+    animate="visible"
+    variants={staggerContainer}
+  >
+    {filteredMembers.map(member => (
       <motion.div
-        className="team-members"
-        initial="hidden"
-        whileInView="visible"
-        variants={staggerContainer}
-        viewport={viewportSettings}
+        key={member.id}
+        className={`member-circle ${selectedMember?.id === member.id ? 'selected' : ''}`}
+        onClick={() => handleMemberClick(member)}
+        variants={itemFadeInUp}
+        layout // Smooth layout transitions
       >
-        {filteredMembers.map(member => (
-          // Animate each member circle
-          <motion.div
-            key={member.id} // Use member.id for stable key
-            className={`member-circle ${selectedMember?.id === member.id ? 'selected' : ''}`}
-            onClick={() => handleMemberClick(member)}
-            variants={itemFadeInUp} // Each circle fades/slides up
-            // layout // Add layout prop if size changes should be animated smoothly
-          >
-            <div className="circle-content">
+        <div className="circle-content">
               <img
                 src={member.image}
                 alt={member.name}
@@ -134,11 +134,13 @@ const TeamComponent = () => {
                 </div>
               )}
             </div>
-          </motion.div>
-        ))}
       </motion.div>
+    ))}
+  </motion.div>
+</AnimatePresence>
     </motion.div>
   );
 };
 
 export default TeamComponent;
+
